@@ -39,13 +39,12 @@ import org.hamcrest.Description;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.samples.petclinic.TestsWithoutSecurity;
 
 /**
  * Test class for {@link OwnerController}
@@ -53,12 +52,9 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author Colin But
  */
 @WebMvcTest(OwnerController.class)
-class OwnerControllerTests {
+class OwnerControllerTests extends TestsWithoutSecurity {
 
 	private static final int TEST_OWNER_ID = 1;
-
-	@Autowired
-	private MockMvc mockMvc;
 
 	@MockBean
 	private OwnerRepository owners;
@@ -83,7 +79,8 @@ class OwnerControllerTests {
 	};
 
 	@BeforeEach
-	void setup() {
+	public void setup() {
+		super.setUp();
 
 		Owner george = george();
 		given(this.owners.findByLastName(eq("Franklin"), any(Pageable.class)))
