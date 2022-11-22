@@ -19,12 +19,13 @@ package org.springframework.samples.petclinic.vet;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
-import org.springframework.samples.petclinic.TestsWithoutSecurity;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -38,7 +39,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 @WebMvcTest(VetController.class)
-class VetControllerTests extends TestsWithoutSecurity {
+class VetControllerTests {
+
+	@Autowired
+	private MockMvc mockMvc;
 
 	@MockBean
 	private VetRepository vets;
@@ -65,8 +69,6 @@ class VetControllerTests extends TestsWithoutSecurity {
 
 	@BeforeEach
 	void setup() {
-		super.setUp();
-
 		given(this.vets.findAll()).willReturn(Lists.newArrayList(james(), helen()));
 		given(this.vets.findAll(any(Pageable.class)))
 				.willReturn(new PageImpl<Vet>(Lists.newArrayList(james(), helen())));
