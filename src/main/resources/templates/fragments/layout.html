@@ -28,7 +28,8 @@
     <div class="container-fluid">
       <a class="navbar-brand" th:href="@{/}"><span></span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon">
+        </span>
       </button>
       <div class="collapse navbar-collapse" id="main-navbar" style>
 
@@ -44,6 +45,11 @@
         </ul>
 
         <ul class="nav navbar-nav me-auto">
+          
+          <!--
+          <a href="/" style="text-decoration: none;"><img style="margin: 13px 20px 0px 0px;" height="50" src="../static/resources/images/white-logo-40.png" th:src="@{/resources/images/white-logo-40.png}"
+                alt="PetClinic"/></a>
+                -->
 
           <li th:replace="~{::menuItem ('/','home','home page','home','Home')}">
             <span class="fa fa-home" aria-hidden="true"></span>
@@ -60,11 +66,12 @@
             <span>Veterinarians</span>
           </li>
 
-          <li
+        <!--<li
             th:replace="~{::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','exclamation-triangle','Error')}">
             <span class="fa exclamation-triangle" aria-hidden="true"></span>
             <span>Error</span>
           </li>
+        -->
 
         </ul>
       </div>
@@ -80,8 +87,8 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-            <img src="../static/resources/images/spring-pivotal-logo.png"
-              th:src="@{/resources/images/spring-pivotal-logo.png}" alt="Sponsored by Pivotal" /></div>
+            <img height="50" src="../static/resources/images/logo.png" th:src="@{/resources/images/logo.png}"
+                alt="PetClinic"/></div>
         </div>
       </div>
     </div>

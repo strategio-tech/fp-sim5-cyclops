@@ -4,10 +4,12 @@
 
   <body>
 
-    <h2 th:text="#{welcome}">Welcome</h2>
+    <h2 th:text="#{welcome}" style="text-align: center;">Welcome to Pet Clinic</h2>
     <div class="row">
         <div class="col-md-12">
-          <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+          <img style="float: left; padding-left: 15px; padding-right: 15px;" class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+          <p>PetClinic is an all-encompassing platform for pet owners and veterinarians alike. It allows pet owners to find veterinarians within our network. Vets can view and manage information regarding pets and their owners who have visited their clinic, as well as update their records and log details for each pet visit.
+          </p>
         </div>
     </div>
 
