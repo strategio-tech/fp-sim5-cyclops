@@ -18,12 +18,14 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 public class ProjectSecurityConfig {
 
     @Bean
-    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        http
+			.authorizeRequests()
 			.antMatchers("/owners/**","/pets/**").authenticated()
 			.anyRequest().permitAll()
 			.and().formLogin()
 			.and().httpBasic();
+		http.csrf().disable();
         return http.build();
     }
 
