@@ -17,20 +17,17 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 @EnableWebSecurity
 public class ProjectSecurityConfig {
 
-    @Bean
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http
-			.authorizeRequests()
-			.antMatchers("/owners/**","/pets/**").authenticated()
-			.anyRequest().permitAll()
-			.and().formLogin()
-			.and().httpBasic();
+	@Bean
+	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/owners/**", "/pets/**").authenticated().anyRequest().permitAll().and()
+				.formLogin().and().httpBasic();
 		http.csrf().disable();
-        return http.build();
-    }
+		return http.build();
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
+
 }

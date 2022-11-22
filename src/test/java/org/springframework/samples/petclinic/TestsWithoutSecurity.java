@@ -13,8 +13,7 @@ public class TestsWithoutSecurity {
 	protected MockMvc mockMvc;
 
 	public void setUp() {
-		mockMvc = MockMvcBuilders
-			.webAppContextSetup(context)
-			.build();
+		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
 	}
+
 }
