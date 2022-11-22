@@ -25,9 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.samples.petclinic.TestsWithoutSecurity;
+import org.springframework.test.web.servlet.MockMvc;
 
 /**
  * Test class for {@link VisitController}
@@ -35,19 +36,20 @@ import org.springframework.samples.petclinic.TestsWithoutSecurity;
  * @author Colin But
  */
 @WebMvcTest(VisitController.class)
-class VisitControllerTests extends TestsWithoutSecurity {
+class VisitControllerTests {
 
 	private static final int TEST_OWNER_ID = 1;
 
 	private static final int TEST_PET_ID = 1;
+
+	@Autowired
+	private MockMvc mockMvc;
 
 	@MockBean
 	private OwnerRepository owners;
 
 	@BeforeEach
 	void init() {
-		super.setUp();
-
 		Owner owner = new Owner();
 		Pet pet = new Pet();
 		owner.addPet(pet);
