@@ -3,6 +3,29 @@
 ## Understanding the Spring Petclinic application with a few diagrams
 <a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
 
+## Deployment Pipeline and Infrastructure
+
+![Pipeline drawio (1) drawio (5)](https://user-images.githubusercontent.com/81815266/203100891-dd3f709a-7880-41b5-826e-f128693a8938.png)
+
+
+### Plan
+In order to plan and coordinate tasks for the completion of the project, we made use of Google suite. We completed our presentation on google slides and organized all tasks and information on shared google docs. For anything that needed to be discussed, we gathered on google meet. 
+### Code
+The code was sourced from the following spring opensource project: 
+https://github.com/spring-projects/spring-petclinic
+The project was built using spring boot. We used GitHub for version control in order to commit changes as needed. A commit to the main branch on github acts as a trigger for the pipeline and launces a build of the updated project as well as a redeploy. 
+### CI/CD pipeline
+Our continuous delivery is fully managed by the AWS code pipeline. Updates to the source code automatically trigger the code pipeline which in turn launches a rebuild and redeploy of the app once the unit tests are passed. 
+### Test
+The unit test is written in Junit. The tests are run after each commit to the main branch of the source code on GitHub. 
+### Build
+The next step in the continuous delivery is for the app to be built. For this, we are utilizing Code Build within our AWS code pipeline. The build is configured with maven for our build automation. Our buildscript.yml file has the configuration details used by Code Build
+### Deploy
+The application is deployed on elastic beanstalk which we are using to handle the provisioning of our infrastructure. This is also where we set up and manage our application's environment as well. We linked the application to an amazon RDS database using MySQL to manage all the application's data. 
+### Monitor
+We are using Amazon CloudWatch in order to collect, access, and analyze our application's data. We are also using the log feature to track anything that may go wrong with our application in real-time.
+
+
 ## Running petclinic locally
 Petclinic is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/) or [Gradle](https://spring.io/guides/gs/gradle/). You can build a jar file and run it from the command line (it should work just as well with Java 11 or newer):
 
